@@ -1,0 +1,19 @@
+# Full project: https://gitlab.com/pages/sphinx
+
+stages:
+  - deploy
+
+pages:
+  stage: deploy
+  tags: [docker]
+  image: python:3.8
+  script:
+    - pip install -r docs/requirements_doc.txt
+    - cd docs
+    - ./.build_docs.sh
+    - mv build/html/ ../public/
+  artifacts:
+    paths:
+    - public
+  only:
+    - master

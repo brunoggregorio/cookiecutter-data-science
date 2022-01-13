@@ -1,0 +1,1 @@
+make clean ; rm -rf build ; rm -rf source/api ; make html --debug --jobs 2 SPHINXOPTS="-W"

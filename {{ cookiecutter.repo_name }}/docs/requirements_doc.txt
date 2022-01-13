@@ -1,0 +1,9 @@
+sphinx
+recommonmark
+sphinxcontrib-napoleon
+sphinx-autodoc-typehints
+sphinx-paramlinks
+sphinx-rtd-theme
+# nbsphinx
+# IPython
+# ipykernel

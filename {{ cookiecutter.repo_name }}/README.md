@@ -3,7 +3,7 @@
 
 {{cookiecutter.description}}
 
-Project Organization
+Organização do projeto
 ------------
 
     ├── LICENSE
@@ -46,6 +46,9 @@ Project Organization
     │   │   ├── predict_model.py
     │   │   └── train_model.py
     │   │
+    │   ├── utils          <- Scripts to facilitate the manipulation of objects in the project
+    │   │   └── utils.py
+    │   │
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
     │
@@ -54,4 +57,25 @@ Project Organization
 
 --------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+<p><small>Template de projeto baseado no <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science</a>. #cookiecutterdatascience</small></p>
+
+
+Documentação do projeto
+-----------------------
+
+1. Edite as variáveis e links no arquivo de configuração `docs/source/conf.py`
+    de acordo com o projeto
+2. Escreva sua documentação em arquivos **markdown** (`.md`) ou 
+    **reStructuredText** (`.rst`) em `docs/source/`
+3. Para executar localmente, instale as dependências em seu ambiente virtual 
+    rodando, por exemplo: `pip install -r docs/requirements_doc.txt`  
+    3.1. Execute os scripts para geração da documentação utilizando os comandos
+    do `Makefile` disponíveis dentro do diretório `docs`, como: `make html`
+    3.2. O HTML gerado pode ser conferido em `docs/build/html/index.html`  
+    3.3. Se tudo estiver ok, limpe o diretório *build* criado com `make clean`
+4. Verifique se o arquivo `.gitlab-ci.yml` está na raiz do seu projeto e se ele
+    possui os passos necessários para a geração da documentação no CI-CD do GitLab
+5. Done! A cada **commit** realizado na *branch* configurada em `.gitlab-ci.yml`
+    sua documentação será atualizada
+6. Confira a documentação criada na página do projeto (`Settings -> Pages`).
+    Ela provavelmente estará sob o domínio **http://sta.spacetimedocs.com/{{ cookiecutter.project_name.lower().replace(' ', '_') }}**.
