@@ -11,7 +11,7 @@
    :width: 100%
    :alt: alternate text
 
-{{ cookiecutter.project_description }}
+{{ cookiecutter.description }}
 
 Link para o código: `{{ cookiecutter.project_name }} <https://gitlab.spacetimeanalytics.com/sta/{{ cookiecutter.project_name.lower().replace(' ', '_') }}>`_.
 
