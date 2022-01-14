@@ -83,6 +83,25 @@ class TestCookieSetup(object):
         assert makefile_path.exists()
         assert no_curlies(makefile_path)
 
+    def test_src(self):
+        src_path = self.path / 'src/__init__.py'
+        assert src_path.exists()
+        assert no_curlies(src_path)
+
+    def test_docs_conf(self):
+        docs_path = self.path / 'docs/source/conf.py'
+        assert docs_path.exists()
+        assert no_curlies(docs_path)
+
+    def test_docs_index(self):
+        docs_path = self.path / 'docs/source/index.rst'
+        assert docs_path.exists()
+        assert no_curlies(docs_path)
+
+    def test_gitlab_ci(self):
+        cicd_path = self.path / '.gitlab-ci.yml'
+        assert cicd_path.exists()
+
     def test_folders(self):
         expected_dirs = [
             'data',
@@ -91,6 +110,11 @@ class TestCookieSetup(object):
             'data/processed',
             'data/raw',
             'docs',
+            'docs/source',
+            'docs/source/_images',
+            'docs/source/_static',
+            'docs/source/dev',
+            'docs/source/tutorials',
             'models',
             'notebooks',
             'references',
@@ -100,6 +124,7 @@ class TestCookieSetup(object):
             'src/data',
             'src/features',
             'src/models',
+            'src/utils',
             'src/visualization',
         ]
 

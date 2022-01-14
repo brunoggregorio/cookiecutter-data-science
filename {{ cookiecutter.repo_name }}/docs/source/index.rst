@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-{{cookiecutter.project_name}}
+{{ cookiecutter.project_name }}
 ==============================
 
 .. image:: _images/banner.png
@@ -11,9 +11,9 @@
    :width: 100%
    :alt: alternate text
 
-Banner do projeto e uma breve descrição.
+{{ cookiecutter.project_description }}
 
-Link para o código: `{{cookiecutter.project_name}} <https://gitlab.spacetimeanalytics.com/sta/{{ cookiecutter.project_name.lower().replace(' ', '_') }}>`_.
+Link para o código: `{{ cookiecutter.project_name }} <https://gitlab.spacetimeanalytics.com/sta/{{ cookiecutter.project_name.lower().replace(' ', '_') }}>`_.
 
 .. note::
    Este documento é apenas um template. Os conteúdos aqui sugeridos não
@@ -37,7 +37,7 @@ Exemplos de interface
 
 Possíveis exemplos de interface do projeto.
 
-Para informações mais detalhadas sobre o **{{cookiecutter.project_name}}** veja os links a seguir:
+Para informações mais detalhadas sobre o **{{ cookiecutter.project_name }}** veja os links a seguir:
 
 
 .. toctree::

@@ -1,4 +1,4 @@
-.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3
+.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3 docs_requirements docs_html docs_clean
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -75,6 +75,25 @@ endif
 ## Test python environment is setup correctly
 test_environment:
 	$(PYTHON_INTERPRETER) test_environment.py
+
+
+#################################################################################
+# PROJECT DOCUMENTATION                                                         #
+#################################################################################
+
+## Install Python dependencies for documentation
+docs_requirements:
+	$(PYTHON_INTERPRETER) -m pip install -r docs/requirements_doc.txt
+
+## Create html files for local check
+docs_html: docs_requirements
+	make html -C docs/
+	@echo ">>> Done. Check the file:\n$(PROJECT_DIR)/docs/_build/html/index.html"
+
+## Clear all the build files (necessary before repo push)
+docs_clean:
+	make clean -C docs/
+
 
 #################################################################################
 # PROJECT RULES                                                                 #

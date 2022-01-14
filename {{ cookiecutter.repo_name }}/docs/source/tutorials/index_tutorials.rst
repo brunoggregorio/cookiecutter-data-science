@@ -40,5 +40,5 @@ Abaixo estão alguns tutoriais de como documentar seu projeto:
 Obtenção dos dados
 ^^^^^^^^^^^^^^^^^^
 
-* `make sync_data_to_s3` usará `aws s3 sync` para, recursivamente, sincronizar os arquivos de `data/` para `s3://{{ cookiecutter.s3_bucket }}/data/`.
-* `make sync_data_from_s3` usará `aws s3 sync` para, recursivamente, sincronizar os arquivos de `s3://{{ cookiecutter.s3_bucket }}/data/` para `data/`.
+* ``make sync_data_to_s3`` usará ``aws s3 sync`` para, recursivamente, sincronizar os arquivos de ``data/`` para ``s3://sta/data/``.
+* ``make sync_data_from_s3`` usará ``aws s3 sync`` para, recursivamente, sincronizar os arquivos de ``s3://sta/data/`` para ``data/``.
