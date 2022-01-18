@@ -84,7 +84,7 @@ class TestCookieSetup(object):
         assert no_curlies(makefile_path)
 
     def test_src(self):
-        src_path = self.path / 'src/__init__.py'
+        src_path = self.path / '{{ cookiecutter.project_slug }}/__init__.py'
         assert src_path.exists()
         assert no_curlies(src_path)
 
@@ -120,12 +120,12 @@ class TestCookieSetup(object):
             'references',
             'reports',
             'reports/figures',
-            'src',
-            'src/data',
-            'src/features',
-            'src/models',
-            'src/utils',
-            'src/visualization',
+            '{{ cookiecutter.project_slug }}',
+            '{{ cookiecutter.project_slug }}/data',
+            '{{ cookiecutter.project_slug }}/features',
+            '{{ cookiecutter.project_slug }}/models',
+            '{{ cookiecutter.project_slug }}/utils',
+            '{{ cookiecutter.project_slug }}/visualization',
         ]
 
         ignored_dirs = [

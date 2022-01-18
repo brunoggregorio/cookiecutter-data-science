@@ -21,7 +21,7 @@ PATH_ROOT = os.path.join(PATH_HERE, '..', '..')
 sys.path.insert(0, os.path.abspath(PATH_ROOT))
 sys.path.insert(0, os.path.abspath('_ext'))
 
-import src
+import {{ cookiecutter.project_slug }} as src
 
 
 # -- Project documents -------------------------------------------------------
@@ -132,17 +132,10 @@ autosectionlabel_prefix_document = True
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = [
-    '_images', 
-    '_static', 
-    '_videos',
-    '_csvs',
-    '_gifs',
-    '_pdfs',
-]
+html_static_path = ['_images', '_static']
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = '{{ cookiecutter.repo_name }}doc'
+htmlhelp_basename = '{{ cookiecutter.project_slug }}doc'
 
 
 # -- Options for intersphinx extension ---------------------------------------

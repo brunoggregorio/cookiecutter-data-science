@@ -11,7 +11,7 @@ pages:
     - pip install -r docs/requirements_doc.txt
     - cd docs
     - ./.build_docs.sh
-    - mv build/html/ ../public/
+    - mv _build/html/ ../public/
   artifacts:
     paths:
     - public

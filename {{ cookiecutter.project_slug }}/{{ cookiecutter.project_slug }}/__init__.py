@@ -5,7 +5,7 @@ __author__ = "{{ cookiecutter.author_name }}"
 __author_email__ = "{{ cookiecutter.author_email }}"
 __license__ = "Proprietary software"
 __copyright__ = " 2014-{% now 'utc', '%Y' %}, %s." % __author__
-__homepage__ = "http://sta.spacetimedocs.com/{{ cookiecutter.project_name.lower().replace(' ', '_') }}/"
+__homepage__ = "http://sta.spacetimedocs.com/{{ cookiecutter.project_slug.lower().replace(' ', '_') }}/"
 # this has to be simple string, see: https://github.com/pypa/twine/issues/522
 __docs__ = "{{ cookiecutter.description }}"
 __long_docs__ = """

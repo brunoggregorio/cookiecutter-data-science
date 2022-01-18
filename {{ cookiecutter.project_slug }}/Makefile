@@ -1,14 +1,28 @@
-.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3 docs_requirements docs_html docs_clean
+.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3 docs_requirements docs_clean docs release
 
 #################################################################################
 # GLOBALS                                                                       #
 #################################################################################
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-BUCKET = {{ cookiecutter.s3_bucket }}
+BUCKET = {%- if cookiecutter.s3_bucket != "[OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')" %} {{ cookiecutter.s3_bucket }}
+{%- else %} bucket_name
+{%- endif %}
 PROFILE = {{ cookiecutter.aws_profile }}
-PROJECT_NAME = {{ cookiecutter.repo_name }}
+PROJECT_NAME = {{ cookiecutter.project_slug }}
+VERSION = 0.1.0
 PYTHON_INTERPRETER = {{ cookiecutter.python_interpreter }}
+
+define BROWSER_PYSCRIPT
+import os, webbrowser, sys
+
+from urllib.request import pathname2url
+
+webbrowser.open("file://" + pathname2url(os.path.abspath(sys.argv[1])))
+endef
+export BROWSER_PYSCRIPT
+
+BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -27,7 +41,7 @@ requirements: test_environment
 
 ## Make Dataset
 data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
+	$(PYTHON_INTERPRETER) $(PROJECT_NAME)/data/make_dataset.py data/raw data/processed
 
 ## Delete all compiled Python files
 clean:
@@ -36,7 +50,7 @@ clean:
 
 ## Lint using flake8
 lint:
-	flake8 src
+	flake8 $(PROJECT_NAME)
 
 ## Upload Data to S3
 sync_data_to_s3:
@@ -76,6 +90,13 @@ endif
 test_environment:
 	$(PYTHON_INTERPRETER) test_environment.py
 
+RELEASE_SIZE?=patch
+
+## Update all version variables and create a git push with tag. RELEASE_SIZE=(major|minor|patch)
+release:
+	bump2version $(RELEASE_SIZE) --verbose
+	git push && git push --tags
+
 
 #################################################################################
 # PROJECT DOCUMENTATION                                                         #
@@ -85,14 +106,15 @@ test_environment:
 docs_requirements:
 	$(PYTHON_INTERPRETER) -m pip install -r docs/requirements_doc.txt
 
-## Create html files for local check
-docs_html: docs_requirements
-	make html -C docs/
-	@echo ">>> Done. Check the file:\n$(PROJECT_DIR)/docs/_build/html/index.html"
-
 ## Clear all the build files (necessary before repo push)
 docs_clean:
-	make clean -C docs/
+	$(MAKE) -C docs clean
+
+## Create html files for local check
+docs: docs_requirements docs_clean
+	$(MAKE) -C docs html
+	$(BROWSER) docs/_build/html/index.html
+	@echo ">>> Done. Check the file:\n$(PROJECT_DIR)/docs/_build/html/index.html"
 
 
 #################################################################################
